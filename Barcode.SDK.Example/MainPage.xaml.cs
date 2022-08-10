@@ -1,6 +1,8 @@
 ﻿
 using Barcode.SDK.Example.Model;
 using Barcode.SDK.Example.Utils;
+using Scanbot.SDK;
+using Scanbot.SDK.Model;
 using System.Linq;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
@@ -11,6 +13,25 @@ namespace Barcode.SDK.Example
 {
     public sealed partial class MainPage : Page
     {
+        BarcodeScanner Scanner = new BarcodeScanner();
+
+        BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration
+        {
+            Callback = (BarcodeResult result) =>
+            {
+                if (result.Barcodes.Count == 0)
+                {
+                    return;
+                }
+
+                Toast.Show(result.Barcodes);
+            },
+            Error = (Error error) =>
+            {
+                Toast.Show(error.Message, "Oops! Something went terribly wrong");
+            },
+        };
+
         public MainPage()
         {
             InitializeComponent();
@@ -38,27 +59,9 @@ namespace Barcode.SDK.Example
 
             if (item == null) { return; }
 
-            var configuration = new BarcodeScannerConfiguration
-            {
-                Callback = (BarcodeResult result) =>
-                {
-                    if (result.Barcodes.Count == 0)
-                    {
-                        return;
-                    }
-
-                    Toast.Show(result.Barcodes);
-                },
-                Error = (Error error) =>
-                {
-                    Toast.Show(error.Message, "Oops! Something went terribly wrong");
-                },
-                //RenderCroppedImage = true
-            };
-
             if (item.Id == 0)
             {
-                Scanner.Start(Frame, configuration);
+                Scanner.Start(Frame, Configuration);
             }
             else if (item.Id == 1)
             {
@@ -69,13 +72,13 @@ namespace Barcode.SDK.Example
                     return;
                 }
 
-                var result = Scanner.Recognize(bitmap, configuration);
+                var result = Scanner.Recognize(bitmap, Configuration);
 
                 if (result.Barcodes.Count == 0)
                 {
                     return;
                 }
-                Toast.Show(result.Barcodes[0].Text);
+                Toast.Show(result.Barcodes);
             }
         }
     }

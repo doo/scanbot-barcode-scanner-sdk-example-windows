@@ -1,4 +1,5 @@
 ﻿
+using Scanbot.SDK.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Barcode.SDK.Example.Utils
         static ToastNotification Current;
         static string Text;
 
-        public static void Show(List<Barcode> barcodes)
+        public static void Show(List<Scanbot.SDK.Model.Barcode> barcodes)
         {
             if (barcodes.Count == 1)
             {
@@ -24,7 +25,7 @@ namespace Barcode.SDK.Example.Utils
             Show(types, "Detected multiple barcodes!");
         }
 
-        public static void Show(Barcode barcode)
+        public static void Show(Scanbot.SDK.Model.Barcode barcode)
         {
             Show(barcode.Text, "Detected " + barcode.Type);
         }
