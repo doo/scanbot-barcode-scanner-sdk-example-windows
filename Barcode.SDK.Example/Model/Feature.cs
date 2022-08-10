@@ -10,7 +10,7 @@ namespace Barcode.SDK.Example.Model
     {
         public static List<Feature> List = new List<Feature>
         {
-            new Feature(0, "barcode-scanner", "Barcode Scanner Page", "Ready-made component: Plug & play barcode scanning"),
+            new Feature(0, "barcode-scanner", "Barcode Scanner", "Ready-made Camera component: Plug & play barcode scanning"),
             new Feature(1, "import", "Import Barcode Image", "Import an existing image containing one or more barcodes"),
         };
 

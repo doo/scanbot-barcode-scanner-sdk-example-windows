@@ -9,6 +9,8 @@ namespace Barcode.SDK.Example
 {
     sealed partial class App : Application
     {
+        const string LICENSE = "";
+
         public App()
         {
             InitializeComponent();
@@ -27,6 +29,8 @@ namespace Barcode.SDK.Example
 
                 Window.Current.Content = rootFrame;
             }
+
+            Scanbot.SDK.LicenseManager.Register(LICENSE);
 
             if (e.PrelaunchActivated == false)
             {

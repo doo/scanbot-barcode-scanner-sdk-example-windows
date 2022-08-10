@@ -39,7 +39,7 @@ namespace Barcode.SDK.Example
 
             List.ItemsSource = Feature.List;
 
-            Background = new SolidColorBrush(Colors.White);
+            Background = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

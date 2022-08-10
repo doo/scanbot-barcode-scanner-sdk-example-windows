@@ -13,7 +13,7 @@
         <ListView 
             x:Name="List" 
             SelectionChanged="OnSelect"
-            BorderThickness="5,20,5,5"
+            BorderThickness="5,5,5,5"
             >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
