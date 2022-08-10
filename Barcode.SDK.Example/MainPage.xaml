@@ -8,7 +8,66 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
 
-    </Grid>
+    <StackPanel x:Name="Root" BorderThickness="0, 0, 0, 0">
+        <ListView 
+            x:Name="List" 
+            SelectionChanged="OnSelect"
+            BorderThickness="5,20,5,5"
+            >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <ListViewItemPresenter SelectedBackground="Transparent"></ListViewItemPresenter>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+                    <StackPanel 
+                        Orientation="Horizontal" 
+                        Margin="0"
+                        
+                        BorderThickness="0,0,0,5"
+                        Padding="5,5,5,5"
+                        Background="White"
+                        >
+
+                        <Image
+                            Source="{Binding Image}"
+                            Margin="10,10,20,10"   
+                            Stretch="Fill"
+                            Height="50"
+                            Width="50"
+                            />
+
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock
+                                Text="{Binding Title}"
+                                FontWeight="Black"
+                                Margin="0,10,0,0"
+                                FontFamily="Calibri"
+                                FontSize="17"
+                                Foreground="Black"
+                                />
+                            <TextBlock
+                                Text="{Binding Description}"
+                                FontStyle="Italic"
+                                Foreground="DarkGray"
+                                />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+    
 </Page>
