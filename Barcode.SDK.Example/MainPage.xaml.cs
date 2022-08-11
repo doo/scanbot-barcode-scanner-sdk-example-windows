@@ -4,6 +4,7 @@ using Barcode.SDK.Example.Utils;
 using Scanbot.SDK;
 using Scanbot.SDK.Model;
 using System.Linq;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -44,6 +45,8 @@ namespace Barcode.SDK.Example
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
+
             base.OnNavigatedTo(e);
         }
 

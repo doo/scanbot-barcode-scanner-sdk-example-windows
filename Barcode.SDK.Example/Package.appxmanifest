@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="0fdc886c-c9a5-41fd-9e9d-5797d18b847f"
+    Name="Barcode.SDK.Windows.Example"
     Publisher="CN=aareu"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="0fdc886c-c9a5-41fd-9e9d-5797d18b847f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Barcode.SDK.Example</DisplayName>
-    <PublisherDisplayName>aareu</PublisherDisplayName>
+    <DisplayName>Scanbot Barcode Scanner SDK Example</DisplayName>
+    <PublisherDisplayName>Scanbot</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,10 +32,10 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Barcode.SDK.Example.App">
       <uap:VisualElements
-        DisplayName="Barcode.SDK.Example"
+        DisplayName="Scanbot Barcode Scanner SDK Example"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Barcode.SDK.Example"
+        Description="Scanbot Barcode Scanner SDK Developer Example App"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

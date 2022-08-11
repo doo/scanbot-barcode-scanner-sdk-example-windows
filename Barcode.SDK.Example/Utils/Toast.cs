@@ -2,6 +2,7 @@
 using Scanbot.SDK.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Windows.UI.Notifications;
 
@@ -22,6 +23,7 @@ namespace Barcode.SDK.Example.Utils
             }
 
             var types = string.Join(", ", barcodes.Select(code => code.Type.Description()));
+
             Show(types, "Detected multiple barcodes!");
         }
 
