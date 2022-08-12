@@ -1,8 +1,8 @@
 ﻿
 using Barcode.SDK.Example.Model;
 using Barcode.SDK.Example.Utils;
-using Scanbot.SDK;
-using Scanbot.SDK.Model;
+using Scanbot;
+using Scanbot.Model;
 using System.Linq;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
@@ -18,19 +18,19 @@ namespace Barcode.SDK.Example
 
         BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration
         {
-            Callback = (BarcodeResult result) =>
-            {
-                if (result.Barcodes.Count == 0)
-                {
-                    return;
-                }
+            //Callback = (BarcodeResult result) =>
+            //{
+            //    if (result.Barcodes.Count == 0)
+            //    {
+            //        return;
+            //    }
 
-                Toast.Show(result.Barcodes);
-            },
-            Error = (Error error) =>
-            {
-                Toast.Show(error.Message, "Oops! Something went terribly wrong");
-            },
+            //    Toast.Show(result.Barcodes);
+            //},
+            //Error = (Error error) =>
+            //{
+            //    Toast.Show(error.Message, "Oops! Something went terribly wrong");
+            //},
         };
 
         public MainPage()
@@ -64,7 +64,7 @@ namespace Barcode.SDK.Example
 
             if (item.Id == 0)
             {
-                Scanner.Start(Frame, Configuration);
+                var result = await Scanner.Start(Frame, Configuration);
             }
             else if (item.Id == 1)
             {

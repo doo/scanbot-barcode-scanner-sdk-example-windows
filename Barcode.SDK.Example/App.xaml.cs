@@ -32,7 +32,7 @@ namespace Barcode.SDK.Example
             }
 
             var applicationId = Package.Current.Id.Name;
-            var license = Scanbot.SDK.LicenseManager.Register(LICENSE);
+            var license = Scanbot.BarcodeSDK.Initialize(LICENSE);
 
             if (e.PrelaunchActivated == false)
             {
