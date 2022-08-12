@@ -1,5 +1,6 @@
 ﻿
 using Barcode.SDK.Example.Model;
+using Barcode.SDK.Example.Properties;
 using Barcode.SDK.Example.Utils;
 using Scanbot;
 using Scanbot.Model;
@@ -65,8 +66,13 @@ namespace Barcode.SDK.Example
             if (item.Id == 0)
             {
                 var result = await Scanner.Start(Frame, Configuration);
+                Toast.Show(result.Barcodes);
             }
             else if (item.Id == 1)
+            {
+                Frame.Navigate(typeof(BarcodeRecognitionPage));
+            }
+            else if (item.Id == 2)
             {
                 var bitmap = await FileUtils.Pick();
 

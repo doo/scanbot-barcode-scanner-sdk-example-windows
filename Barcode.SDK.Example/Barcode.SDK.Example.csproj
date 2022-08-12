@@ -7,8 +7,8 @@
     <ProjectGuid>{16CED54F-F113-4079-A1E3-8C986E3FEE63}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Barcode.SDK.Example</RootNamespace>
-    <AssemblyName>Barcode.SDK.Example</AssemblyName>
+    <RootNamespace>BarcodeSDK.Example</RootNamespace>
+    <AssemblyName>Scanbot.Barcode.SDK.Example</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -124,6 +124,9 @@
     </Compile>
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pages\BarcodeRecognitionPage.xaml.cs">
+      <DependentUpon>BarcodeRecognitionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="Utils\Toast.cs" />
   </ItemGroup>
@@ -152,6 +155,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\BarcodeRecognitionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
