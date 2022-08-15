@@ -4,7 +4,9 @@ using Barcode.SDK.Example.Properties;
 using Barcode.SDK.Example.Utils;
 using Scanbot;
 using Scanbot.Model;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
@@ -17,22 +19,7 @@ namespace Barcode.SDK.Example
     {
         BarcodeScanner Scanner = new BarcodeScanner();
 
-        BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration
-        {
-            //Callback = (BarcodeResult result) =>
-            //{
-            //    if (result.Barcodes.Count == 0)
-            //    {
-            //        return;
-            //    }
-
-            //    Toast.Show(result.Barcodes);
-            //},
-            //Error = (Error error) =>
-            //{
-            //    Toast.Show(error.Message, "Oops! Something went terribly wrong");
-            //},
-        };
+        BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration {};
 
         public MainPage()
         {
@@ -40,6 +27,7 @@ namespace Barcode.SDK.Example
 
 
             List.ItemsSource = Feature.List;
+            List.IsItemClickEnabled = true;
 
             Background = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
         }
@@ -49,17 +37,22 @@ namespace Barcode.SDK.Example
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
 
             base.OnNavigatedTo(e);
+
+            List.ItemClick += OnItemClickAsync;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+
+
+            List.ItemClick -= OnItemClickAsync;
         }
 
-        private async void OnSelect(object sender, SelectionChangedEventArgs e)
+
+        private async void OnItemClickAsync(object sender, ItemClickEventArgs e)
         {
-            // Get the instance of ListView
-            Feature item = (sender as ListView).SelectedItem as Feature;
+            var item = (Feature)e.ClickedItem;
 
             if (item == null) { return; }
 
@@ -85,10 +78,12 @@ namespace Barcode.SDK.Example
 
                 if (result.Barcodes.Count == 0)
                 {
+                    Toast.Show("Didn't find any barcodes on the image you selected", "Oops");
                     return;
                 }
                 Toast.Show(result.Barcodes);
             }
         }
+
     }
 }
