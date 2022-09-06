@@ -74,14 +74,20 @@ namespace Barcode.SDK.Example
                     return;
                 }
 
-                var result = Scanner.Recognize(bitmap, Configuration);
-
-                if (result.Barcodes.Count == 0)
+                try
                 {
-                    Toast.Show("Didn't find any barcodes on the image you selected", "Oops");
-                    return;
+                    var result = Scanner.Recognize(bitmap, Configuration);
+
+                    if (result.Barcodes.Count == 0)
+                    {
+                        Toast.Show("Didn't find any barcodes on the image you selected", "Oops");
+                        return;
+                    }
+                    Toast.Show(result.Barcodes);
+                } catch(Exception exception)
+                {
+                    Toast.Show(exception.Message, "Oops");
                 }
-                Toast.Show(result.Barcodes);
             }
         }
 

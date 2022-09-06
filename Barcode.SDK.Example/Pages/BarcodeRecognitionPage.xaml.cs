@@ -2,6 +2,7 @@
 using Scanbot.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -39,7 +40,7 @@ namespace Barcode.SDK.Example.Properties
 
             await BarcodeScannerComponent.Initialize(configuration);
 
-            BarcodeScannerComponent.Callback += OnBarcodeResult;
+            BarcodeScannerComponent.Recognized += OnBarcodeResult;
             BarcodeScannerComponent.Error += OnError;
 
             BackButton.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
@@ -53,7 +54,7 @@ namespace Barcode.SDK.Example.Properties
 
             await BarcodeScannerComponent.Dispose();
 
-            BarcodeScannerComponent.Callback -= OnBarcodeResult;
+            BarcodeScannerComponent.Recognized -= OnBarcodeResult;
             BarcodeScannerComponent.Error -= OnError;
 
             BackButton.BackRequested -= OnBackPress;

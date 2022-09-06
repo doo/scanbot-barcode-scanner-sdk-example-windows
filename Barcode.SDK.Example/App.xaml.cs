@@ -9,8 +9,7 @@ namespace Barcode.SDK.Example
 {
     sealed partial class App : Application
     {
-        const string LICENSE =
-            "";
+        const string LICENSE = "";
 
         public App()
         {
