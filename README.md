@@ -17,10 +17,6 @@ For the developer guide and full API reference of the Scanbot Web Document Scann
 
 ## Please note
 
-The Scanbot Web Document Scanner SDK will run without a license for one minute per session!
-
-After the trial period is over all Scanbot Web SDK functions
-as well as UI components (Document Scanner UI) will stop working.
-You have to refresh the page to get another trial period.
+Scanbot Windows Barcode Scanner SDK will not run without a license
 
 To get a free "no-strings-attached" trial license, please submit the [Trial License Form](https://scanbot.io/trial/) on our website.
