@@ -56,7 +56,6 @@ namespace Barcode.SDK.Example.Properties
 
             BarcodeScannerComponent.Recognized -= OnBarcodeResult;
             BarcodeScannerComponent.Error -= OnError;
-
             BackButton.BackRequested -= OnBackPress;
         }
 

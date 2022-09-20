@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="Barcode.SDK.Windows.Example"
+    Name="io.scanbot.example.sdk.barcode.windows"
     Publisher="CN=aareu"
     Version="1.0.0.0" />
 
