@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BarcodeFoundOverlay.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -166,7 +167,7 @@
       <Version>6.2.13</Version>
     </PackageReference>
     <PackageReference Include="Scanbot.BarcodeSDK.Windows">
-      <Version>1.0.0-beta7</Version>
+      <Version>1.0.0-pre.1</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
