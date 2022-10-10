@@ -30,6 +30,11 @@ namespace Barcode.SDK.Example
             List.IsItemClickEnabled = true;
 
             Background = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
+
+            LicenseLabel.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
+            LicenseLabel.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+            LicenseLabel.TextAlignment = Windows.UI.Xaml.TextAlignment.Center;
+            LicenseLabelContainer.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 200, 25, 60));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -37,6 +42,15 @@ namespace Barcode.SDK.Example
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
 
             base.OnNavigatedTo(e);
+
+            if (!LicenseManager.Details.IsValid)
+            {
+                LicenseLabelContainer.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                LicenseLabel.Text = LicenseManager.Details.Description;
+                List.SelectionMode = ListViewSelectionMode.None;
+                List.IsItemClickEnabled = false;
+                
+            }
 
             List.ItemClick += OnItemClickAsync;
         }
