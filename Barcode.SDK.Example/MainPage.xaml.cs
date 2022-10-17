@@ -25,7 +25,6 @@ namespace Barcode.SDK.Example
         {
             InitializeComponent();
 
-
             List.ItemsSource = Feature.List;
             List.IsItemClickEnabled = true;
 
