@@ -1,0 +1,5 @@
+All items and source code Copyright (c) 2022 Scanbot SDK GmbH (https://scanbot.io).
+
+The Scanbot Barcode Scanner SDK is a commercial product and requires a license to be used in a production environment. Get a free trial license (https://scanbot.io/trial/) to evaluate and integrate it into your project.
+
+Please contact us via sdk@scanbot.io for more information.
