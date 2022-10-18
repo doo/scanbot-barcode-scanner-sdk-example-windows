@@ -89,7 +89,7 @@ namespace Barcode.SDK.Example.Properties
                 Overlay.Show(result);
             });
             
-            Toast.Show(result.Barcodes);
+            //Toast.Show(result.Barcodes);
         }
 
         private void OnError(Error error)
