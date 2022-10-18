@@ -1,5 +1,6 @@
 ﻿using Barcode.SDK.Example.Utils;
 using BarcodeSDK.Example.Controls;
+using Scanbot.Controls;
 using Scanbot.Model;
 using Scanbot.Utils;
 using System;
@@ -25,9 +26,7 @@ namespace Barcode.SDK.Example.Properties
     {
         SystemNavigationManager BackButton = SystemNavigationManager.GetForCurrentView();
 
-        BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration
-        {
-        };
+        BarcodeScannerConfiguration Configuration;
 
         BarcodeFoundOverlay Overlay;
 
@@ -36,6 +35,10 @@ namespace Barcode.SDK.Example.Properties
             InitializeComponent();
 
             BarcodeScannerComponent.Padding = new Thickness(30, 30, 30, 30);
+
+            Configuration = new BarcodeScannerConfiguration();
+            //Configuration.Finder.Hint = "Custom finder hint text...";
+            //Configuration.AcceptedTypes = new BarcodeType[] { BarcodeType.QRCode, BarcodeType.Aztec }.ToList();
 
             Overlay = new BarcodeFoundOverlay();
             Root.Children.Add(Overlay);
@@ -88,8 +91,6 @@ namespace Barcode.SDK.Example.Properties
                 HideFinder();
                 Overlay.Show(result);
             });
-            
-            //Toast.Show(result.Barcodes);
         }
 
         private void OnError(Error error)
