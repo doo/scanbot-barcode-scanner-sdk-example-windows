@@ -42,13 +42,22 @@ namespace Barcode.SDK.Example
 
             base.OnNavigatedTo(e);
 
-            if (!LicenseManager.Details.IsValid)
+            var errorMessage = "";
+            if (String.IsNullOrEmpty(App.LICENSE_KEY))
+            {
+                errorMessage = "Missing trial license key! Please see the comments in App.xaml.cs";
+            }
+            else if (!LicenseManager.Details.IsValid)
+            {
+                errorMessage = LicenseManager.Details.Description;
+            }
+
+            if (!String.IsNullOrEmpty(errorMessage))
             {
                 LicenseLabelContainer.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                LicenseLabel.Text = LicenseManager.Details.Description;
+                LicenseLabel.Text = errorMessage;
                 List.SelectionMode = ListViewSelectionMode.None;
                 List.IsItemClickEnabled = false;
-                
             }
 
             List.ItemClick += OnItemClickAsync;

@@ -9,12 +9,14 @@ namespace Barcode.SDK.Example
 {
     sealed partial class App : Application
     {
-        // A trial license key is required for evaluation or testing!
-        // You can get a free "no-strings-attached" trial license.
-        // Please use the trial license form on our website: https://scanbot.io/trial/
-        // You will need to provide the following package name (aka. application ID) of this
-        // example app: "io.scanbot.example.sdk.barcode.windows"
-        const string LICENSE_KEY = "";
+        /*
+         * A trial license key is required for evaluation or testing!
+         * You can get a free "no-strings-attached" trial license.
+         * Please use the trial license form on our website: https://scanbot.io/trial/
+         * You will need to provide the following package name (aka. application ID) of this
+         * example app: "io.scanbot.example.sdk.barcode.windows"
+         */
+        public const string LICENSE_KEY = ""; // TODO Insert your trial license key here
 
         public App()
         {
