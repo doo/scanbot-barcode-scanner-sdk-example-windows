@@ -50,6 +50,8 @@ namespace Barcode.SDK.Example.Properties
 
             await BarcodeScannerComponent.Initialize(Configuration);
 
+            BarcodeScannerComponent.Attach(Finder);
+
             BarcodeScannerComponent.Recognized += OnBarcodeResult;
             BarcodeScannerComponent.Error += OnError;
 
@@ -88,7 +90,7 @@ namespace Barcode.SDK.Example.Properties
             ViewUtils.RunOnMain(() =>
             {
                 BarcodeScannerComponent.IsPaused = true;
-                HideFinder();
+                Finder.Visibility = Visibility.Collapsed;
                 Overlay.Show(result);
             });
         }
@@ -106,27 +108,13 @@ namespace Barcode.SDK.Example.Properties
         private void OnContinue(object sender, RoutedEventArgs e)
         {
             BarcodeScannerComponent.IsPaused = false;
-            ShowFinder();
+            Finder.Visibility = Visibility.Visible;
             Overlay.Hide();
         }
 
         private void OnClose(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
-        }
-
-        void ShowFinder()
-        {
-            BarcodeScannerComponent.ViewFinder.Hole.Fill = new SolidColorBrush(Windows.UI.Colors.Transparent);
-            BarcodeScannerComponent.ViewFinder.Hole.Stroke = new SolidColorBrush(Windows.UI.Colors.White);
-            BarcodeScannerComponent.ViewFinder.Hint.Visibility = Visibility.Visible;
-        }
-
-        void HideFinder()
-        {
-            BarcodeScannerComponent.ViewFinder.Hole.Fill = new SolidColorBrush(Configuration.Finder.Background);
-            BarcodeScannerComponent.ViewFinder.Hole.Stroke = null;
-            BarcodeScannerComponent.ViewFinder.Hint.Visibility = Visibility.Collapsed;
         }
     }
 }
