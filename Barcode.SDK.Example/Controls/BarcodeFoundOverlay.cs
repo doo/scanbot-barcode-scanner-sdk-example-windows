@@ -26,7 +26,7 @@ namespace BarcodeSDK.Example.Controls
             TextBlock.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
             TextBlock.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
             TextBlock.FontSize = 20.0;
-            TextBlock.Foreground = new SolidColorBrush(Colors.White);
+            TextBlock.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             TextBlock.FontWeight = Windows.UI.Text.FontWeights.Bold;
             TextBlock.Margin = new Windows.UI.Xaml.Thickness(0, 200, 0, 100);
             Children.Add(TextBlock);
@@ -36,8 +36,8 @@ namespace BarcodeSDK.Example.Controls
             Continue.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
             Continue.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
             Continue.FontSize = 18.0;
-            Continue.Foreground = new SolidColorBrush(Colors.White);
-            Continue.Background = new SolidColorBrush(Colors.Blue);
+            Continue.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+            Continue.Background = new SolidColorBrush(Windows.UI.Colors.Blue);
             Continue.Margin = new Windows.UI.Xaml.Thickness(0, 0, 0, 0);
             Continue.CornerRadius = new Windows.UI.Xaml.CornerRadius(5);
             Children.Add(Continue);
@@ -46,11 +46,11 @@ namespace BarcodeSDK.Example.Controls
             Close.Content = "Close";
             Close.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
             Close.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center;
-            Close.Background = new SolidColorBrush(Colors.Red);
+            Close.Background = new SolidColorBrush(Windows.UI.Colors.Red);
             Close.Margin = new Windows.UI.Xaml.Thickness(0, 15, 0, 0);
             Close.FontSize = 16.0;
             Close.CornerRadius = new Windows.UI.Xaml.CornerRadius(5);
-            Close.Foreground = new SolidColorBrush(Colors.White);
+            Close.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             Children.Add(Close);
 
             HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Stretch;
@@ -65,7 +65,7 @@ namespace BarcodeSDK.Example.Controls
             string text = "";
             foreach(var item in result.Barcodes)
             {
-                text += item.Text + " (" + item.Type.Description() + "), ";
+                text += item.Text + " (" + EnumExtensions.ToDescription(item.Type) + "), ";
             }
             TextBlock.Text = text.TrimEnd(' ').TrimEnd(',');
         }

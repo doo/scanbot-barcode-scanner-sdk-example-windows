@@ -22,7 +22,7 @@ namespace Barcode.SDK.Example.Utils
                 return;
             }
 
-            var types = string.Join(", ", barcodes.Select(code => code.Type.Description()));
+            var types = string.Join(", ", barcodes.Select(code => EnumExtensions.ToDescription(code.Type)));
 
             Show(types, "Detected multiple barcodes!");
         }

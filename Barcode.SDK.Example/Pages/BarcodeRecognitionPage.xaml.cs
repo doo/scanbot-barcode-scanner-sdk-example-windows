@@ -26,7 +26,7 @@ namespace Barcode.SDK.Example.Properties
     {
         SystemNavigationManager BackButton = SystemNavigationManager.GetForCurrentView();
 
-        BarcodeScannerConfiguration Configuration;
+        Scanbot.Model.BarcodeScannerConfiguration Configuration;
 
         BarcodeFoundOverlay Overlay;
 
@@ -87,12 +87,9 @@ namespace Barcode.SDK.Example.Properties
                 return;
             }
 
-            ViewUtils.RunOnMain(() =>
-            {
-                BarcodeScannerComponent.IsPaused = true;
-                Finder.Visibility = Visibility.Collapsed;
-                Overlay.Show(result);
-            });
+            BarcodeScannerComponent.IsPaused = true;
+            Finder.Visibility = Visibility.Collapsed;
+            Overlay.Show(result);
         }
 
         private void OnError(Error error)
