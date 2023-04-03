@@ -3,6 +3,12 @@
 The Scanbot Windows Barcode Scanner SDK makes it possible to integrate barcode scanning on your UWP app. 
 It features real-time barcode detection as well as detection from still images.
 
+## Free Developer Support
+
+We provide free "no-strings-attached" developer support for the implementation & testing of the Scanbot SDK.
+If you encounter technical issues with integrating the Scanbot SDK or need advice on choosing the appropriate
+framework or features, please visit our [Support Page](https://docs.scanbot.io/support/).
+
 ## How does it work?
 
 The Windows SDK is a native SDK built for UWP via 
