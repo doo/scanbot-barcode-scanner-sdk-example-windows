@@ -50,8 +50,6 @@ namespace Barcode.SDK.Example.Properties
 
             await BarcodeScannerComponent.Initialize(Configuration);
 
-            BarcodeScannerComponent.Attach(Finder);
-
             BarcodeScannerComponent.Recognized += OnBarcodeResult;
             BarcodeScannerComponent.Error += OnError;
 
@@ -63,11 +61,11 @@ namespace Barcode.SDK.Example.Properties
             Overlay.Close.Click += OnClose;
         }
 
-        protected override async void OnNavigatedFrom(NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
 
-            await BarcodeScannerComponent.Dispose();
+            BarcodeScannerComponent.Dispose();
 
             BarcodeScannerComponent.Recognized -= OnBarcodeResult;
             BarcodeScannerComponent.Error -= OnError;
@@ -92,7 +90,7 @@ namespace Barcode.SDK.Example.Properties
             Overlay.Show(result);
         }
 
-        private void OnError(Error error)
+        private void OnError(ScanbotSdkException error)
         {
             Toast.Show(error.Message, "Oops! Something went wrong");
         }
