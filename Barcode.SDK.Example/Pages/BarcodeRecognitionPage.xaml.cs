@@ -1,47 +1,25 @@
-﻿using Barcode.SDK.Example.Utils;
-using BarcodeSDK.Example.Controls;
-using Scanbot.Controls;
-using Scanbot.Model;
-using Scanbot.Utils;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Collections.Generic;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Scanbot.Controls;
+using Scanbot.Model;
+using Barcode.SDK.Example.Utils;
 
 namespace Barcode.SDK.Example.Properties
 {
     public sealed partial class BarcodeRecognitionPage : Page
     {
-        SystemNavigationManager BackButton = SystemNavigationManager.GetForCurrentView();
+        private SystemNavigationManager BackButton;
 
-        Scanbot.Model.BarcodeScannerConfiguration Configuration;
-
-        BarcodeFoundOverlay Overlay;
+        private readonly BarcodeScannerConfiguration Configuration;
 
         public BarcodeRecognitionPage()
         {
             InitializeComponent();
-
-            BarcodeScannerComponent.Padding = new Thickness(30, 30, 30, 30);
-
             Configuration = new BarcodeScannerConfiguration();
-            //Configuration.Finder.Hint = "Custom finder hint text...";
-            //Configuration.AcceptedTypes = new BarcodeType[] { BarcodeType.QRCode, BarcodeType.Aztec }.ToList();
-
-            Overlay = new BarcodeFoundOverlay();
-            Root.Children.Add(Overlay);
+            Configuration.AcceptedTypes = new List<BarcodeType> { BarcodeType.QRCode, BarcodeType.Aztec };
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -53,8 +31,8 @@ namespace Barcode.SDK.Example.Properties
             BarcodeScannerComponent.Recognized += OnBarcodeResult;
             BarcodeScannerComponent.Error += OnError;
 
+            BackButton = SystemNavigationManager.GetForCurrentView();
             BackButton.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-
             BackButton.BackRequested += OnBackPress;
 
             Overlay.Continue.Click += OnContinue;
@@ -77,10 +55,7 @@ namespace Barcode.SDK.Example.Properties
 
         private void OnBarcodeResult(BarcodeResult result)
         {
-            if (result.IsEmpty)
-                return;
-
-            if (BarcodeScannerComponent.IsPaused)
+            if (result.IsEmpty || BarcodeScannerComponent.IsPaused)
             {
                 return;
             }

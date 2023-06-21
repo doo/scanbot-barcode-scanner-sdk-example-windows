@@ -2,14 +2,24 @@
     x:Class="Barcode.SDK.Example.Properties.BarcodeRecognitionPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Barcode.SDK.Example.Properties"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:scanbot="using:Scanbot.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:scanbot="using:Scanbot.Controls" 
+    xmlns:controls="using:BarcodeSDK.Example.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="Root">
-        <scanbot:BarcodeScannerComponent x:Name="BarcodeScannerComponent"/>
-        <scanbot:FinderControl x:Name="Finder"/>
+        <scanbot:BarcodeScannerComponent x:Name="BarcodeScannerComponent"
+                                         Padding="30, 30, 30, 30"
+                                         />
+        <scanbot:FinderControl x:Name="Finder"
+                               HintText="Custom finder hint text..."
+                               HoleShape="RoundedRectangle"
+                               HoleCornerRadius="0 20 0 20"
+                               HoleStrokeThickness="10"
+                               />
+
+        <controls:BarcodeFoundOverlay x:Name="Overlay" />
     </Grid>
 </Page>

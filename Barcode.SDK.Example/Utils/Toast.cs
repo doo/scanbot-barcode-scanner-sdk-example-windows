@@ -2,13 +2,12 @@
 using Scanbot.Utils;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Windows.UI.Notifications;
 
 namespace Barcode.SDK.Example.Utils
 {
-    public class Toast
+    public static class Toast
     {
         static readonly ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
         static ToastNotification Current;

@@ -1,31 +1,28 @@
-﻿
-using Barcode.SDK.Example.Model;
-using Barcode.SDK.Example.Properties;
-using Barcode.SDK.Example.Utils;
-using Scanbot;
-using Scanbot.Model;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Scanbot;
+using Scanbot.Model;
+using Barcode.SDK.Example.Model;
+using Barcode.SDK.Example.Properties;
+using Barcode.SDK.Example.Utils;
 
 namespace Barcode.SDK.Example
 {
     public sealed partial class MainPage : Page
     {
-        BarcodeScanner Scanner = new BarcodeScanner();
+        private readonly BarcodeScanner Scanner = new BarcodeScanner();
 
-        BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration {};
+        private readonly BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration {};
 
         public MainPage()
         {
             InitializeComponent();
 
-            List.ItemsSource = Feature.List;
+            List.ItemsSource = Feature.ExampleFeatures;
             List.IsItemClickEnabled = true;
 
             Background = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
@@ -43,7 +40,8 @@ namespace Barcode.SDK.Example
             base.OnNavigatedTo(e);
 
             var errorMessage = "";
-            if (String.IsNullOrEmpty(App.LICENSE_KEY))
+
+            if (string.IsNullOrEmpty(App.LICENSE_KEY))
             {
                 errorMessage = "Missing trial license key! Please see the comments in App.xaml.cs";
             }
@@ -52,7 +50,7 @@ namespace Barcode.SDK.Example
                 errorMessage = LicenseManager.Details.Description;
             }
 
-            if (!String.IsNullOrEmpty(errorMessage))
+            if (!string.IsNullOrEmpty(errorMessage))
             {
                 LicenseLabelContainer.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 LicenseLabel.Text = errorMessage;
@@ -67,29 +65,25 @@ namespace Barcode.SDK.Example
         {
             base.OnNavigatedFrom(e);
 
-
             List.ItemClick -= OnItemClickAsync;
         }
-
 
         private async void OnItemClickAsync(object sender, ItemClickEventArgs e)
         {
             var item = (Feature)e.ClickedItem;
 
-            if (item == null) { return; }
-
-            if (item.Id == 0)
+            if (item.Type == Feature.FeatureType.ReadyToUseUI)
             {
                 var result = await Scanner.Start(Frame, Configuration);
                 Toast.Show(result.Barcodes);
             }
-            else if (item.Id == 1)
+            else if (item.Type == Feature.FeatureType.CustomComponent)
             {
                 Frame.Navigate(typeof(BarcodeRecognitionPage));
             }
-            else if (item.Id == 2)
+            else if (item.Type == Feature.FeatureType.ImportImage)
             {
-                var bitmap = await FileUtils.Pick();
+                var bitmap = await FileUtils.PickImage();
 
                 if (bitmap == null)
                 {
@@ -106,7 +100,8 @@ namespace Barcode.SDK.Example
                         return;
                     }
                     Toast.Show(result.Barcodes);
-                } catch(Exception exception)
+                } 
+                catch (Exception exception)
                 {
                     Toast.Show(exception.Message, "Oops");
                 }
