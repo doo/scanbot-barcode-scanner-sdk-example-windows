@@ -26,10 +26,10 @@ namespace Barcode.SDK.Example.Properties
         {
             base.OnNavigatedTo(e);
 
-            await BarcodeScannerComponent.Initialize(Configuration);
+            await BarcodeScanner.Initialize(Configuration);
 
-            BarcodeScannerComponent.Recognized += OnBarcodeResult;
-            BarcodeScannerComponent.Error += OnError;
+            BarcodeScanner.Recognized += OnBarcodeResult;
+            BarcodeScanner.Error += OnError;
 
             BackButton = SystemNavigationManager.GetForCurrentView();
             BackButton.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
@@ -43,10 +43,10 @@ namespace Barcode.SDK.Example.Properties
         {
             base.OnNavigatedFrom(e);
 
-            BarcodeScannerComponent.Dispose();
+            BarcodeScanner.Dispose();
 
-            BarcodeScannerComponent.Recognized -= OnBarcodeResult;
-            BarcodeScannerComponent.Error -= OnError;
+            BarcodeScanner.Recognized -= OnBarcodeResult;
+            BarcodeScanner.Error -= OnError;
             BackButton.BackRequested -= OnBackPress;
 
             Overlay.Continue.Click -= OnContinue;
@@ -55,12 +55,12 @@ namespace Barcode.SDK.Example.Properties
 
         private void OnBarcodeResult(BarcodeResult result)
         {
-            if (result.IsEmpty || BarcodeScannerComponent.IsPaused)
+            if (result.IsEmpty || BarcodeScanner.IsPaused)
             {
                 return;
             }
 
-            BarcodeScannerComponent.IsPaused = true;
+            BarcodeScanner.IsPaused = true;
             Finder.Visibility = Visibility.Collapsed;
             Overlay.Show(result);
         }
@@ -77,7 +77,7 @@ namespace Barcode.SDK.Example.Properties
 
         private void OnContinue(object sender, RoutedEventArgs e)
         {
-            BarcodeScannerComponent.IsPaused = false;
+            BarcodeScanner.IsPaused = false;
             Finder.Visibility = Visibility.Visible;
             Overlay.Hide();
         }
