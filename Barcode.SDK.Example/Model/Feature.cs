@@ -7,14 +7,14 @@ namespace Barcode.SDK.Example.Model
         public enum FeatureType
         {
             ReadyToUseUI,
-            CustomComponent,
+            ClassicComponent,
             ImportImage
         }
 
         public static List<Feature> ExampleFeatures = new List<Feature>
         {
-            new Feature(FeatureType.ReadyToUseUI, "barcode-scanner", "Barcode Scanner RTU-UI", "Ready-made Scanbot Camera page: Capture and retrieve a single Barcode Result"),
-            new Feature(FeatureType.CustomComponent, "barcode-scanner", "Barcode Scanner Layout", "Custom BarcodeScannerComponent implementation with endless recognition"),
+            new Feature(FeatureType.ReadyToUseUI, "barcode-scanner", "Barcode Scanner RTU UI", "Ready-made Scanbot Camera page: Capture and retrieve a single Barcode Result"),
+            new Feature(FeatureType.ClassicComponent, "barcode-scanner", "Barcode Scanner Classic Component", "Custom BarcodeScannerComponent implementation with endless recognition"),
             new Feature(FeatureType.ImportImage, "import", "Import Barcode Image", "Import an existing image containing one or more barcodes"),
         };
 

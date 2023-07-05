@@ -16,7 +16,12 @@ namespace Barcode.SDK.Example
     {
         private readonly BarcodeScanner Scanner = new BarcodeScanner();
 
-        private readonly BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration {};
+        private readonly BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration
+        {
+            // This configuration is used for the ready-to-use UI as well as scanning from a file.
+            // Add/remove properties as needed to change the way the scanner behaves.
+            // See ClassicComponentBarcodeScannerPage to change its configuration.
+        };
 
         public MainPage()
         {
@@ -77,9 +82,9 @@ namespace Barcode.SDK.Example
                 var result = await Scanner.Start(Frame, Configuration);
                 Toast.Show(result.Barcodes);
             }
-            else if (item.Type == Feature.FeatureType.CustomComponent)
+            else if (item.Type == Feature.FeatureType.ClassicComponent)
             {
-                Frame.Navigate(typeof(BarcodeRecognitionPage));
+                Frame.Navigate(typeof(ClassicBarcodeScannerPage));
             }
             else if (item.Type == Feature.FeatureType.ImportImage)
             {
