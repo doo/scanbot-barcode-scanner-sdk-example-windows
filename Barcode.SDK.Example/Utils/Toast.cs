@@ -3,66 +3,40 @@ using Scanbot.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Windows.UI.Notifications;
+using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 
 namespace Barcode.SDK.Example.Utils
 {
     public static class Toast
     {
-        static readonly ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
-        static ToastNotification Current;
-        static string Text;
-
-        public static void Show(List<Scanbot.Model.Barcode> barcodes)
+        public static Task Show(List<Scanbot.Model.Barcode> barcodes)
         {
             if (barcodes.Count == 1)
             {
-                Show(barcodes[0]);
-                return;
+                return Show(barcodes[0]);
             }
 
             var types = string.Join(", ", barcodes.Select(code => EnumExtensions.ToDescription(code.Type)));
 
-            Show(types, "Detected multiple barcodes!");
+            return Show(types, "Detected multiple barcodes!");
         }
 
-        public static void Show(Scanbot.Model.Barcode barcode)
+        public static async Task Show(Scanbot.Model.Barcode barcode)
         {
-            Show(barcode.Text, "Detected " + barcode.Type);
+            await Show(barcode.Text, "Detected " + barcode.Type);
         }
 
-        public static void Show(string body, string title = "Barcode Detected!")
+        public static async Task Show(string body, string title = "Barcode Detected!")
         {
-            if (Text == body)
+            var message = new ContentDialog()
             {
-                return;
-            }
+                Title = title,
+                Content = body,
+                CloseButtonText = "Dismiss"
+            };
 
-            if (Current != null)
-            {
-                ToastNotifier.Hide(Current);
-            }
-
-            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
-            Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
-            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(body));
-            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
-            Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
-            audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
-
-            Current = new ToastNotification(toastXml);
-            Current.ExpirationTime = DateTime.Now.AddSeconds(2);
-            ToastNotifier.Show(Current);
-            Text = body;
-
-            Current.Dismissed += OnHide;
-        }
-
-        public static void OnHide(ToastNotification sender, ToastDismissedEventArgs args)
-        {
-            Current.Dismissed -= OnHide;
-            Text = null;
+            await message.ShowAsync();
         }
     }
 }

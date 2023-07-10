@@ -80,7 +80,7 @@ namespace Barcode.SDK.Example
             if (item.Type == Feature.FeatureType.ReadyToUseUI)
             {
                 var result = await Scanner.Start(Frame, Configuration);
-                Toast.Show(result.Barcodes);
+                await Toast.Show(result.Barcodes);
             }
             else if (item.Type == Feature.FeatureType.ClassicComponent)
             {
@@ -101,14 +101,14 @@ namespace Barcode.SDK.Example
 
                     if (result.Barcodes.Count == 0)
                     {
-                        Toast.Show("Didn't find any barcodes on the image you selected", "Oops");
+                        await Toast.Show("Didn't find any barcodes on the image you selected", "Oops");
                         return;
                     }
-                    Toast.Show(result.Barcodes);
+                    await Toast.Show(result.Barcodes);
                 } 
                 catch (Exception exception)
                 {
-                    Toast.Show(exception.Message, "Oops");
+                    await Toast.Show(exception.Message, "Oops");
                 }
             }
         }
