@@ -4,6 +4,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Scanbot.Controls;
 using Scanbot.Model;
 using Scanbot.Utils;
 using Barcode.SDK.Example.Utils;
@@ -60,15 +61,22 @@ namespace Barcode.SDK.Example.Properties
             Frame.GoBack();
         }
 
-        private void SelectionOverlayPolygonTapped(object sender, BarcodeFigure e)
+        private void OnPolygonTapped(object sender, BarcodeFigure e)
         {
-            if (!SelectionOverlay.HighlightedBarcodes.Contains(e.Barcode))
+            var selectionOverlay = sender as SelectionOverlayControl;
+            
+            if (selectionOverlay == null)
             {
-                e.PolygonStroke = SelectionOverlay.HighlightedPolygonColor.Brush();
-                e.PolygonFill = SelectionOverlay.HighlightedPolygonColor.Brush(0.3);
-                e.TextBackground = SelectionOverlay.HighlightedTextBackgroundColor.Brush(0.7);
-                e.TextColor = SelectionOverlay.HighlightedTextColor.Brush();
-                SelectionOverlay.HighlightedBarcodes.Add(e.Barcode);
+                return;
+            }    
+
+            if (!selectionOverlay.HighlightedBarcodes.Contains(e.Barcode))
+            {
+                e.PolygonStroke = selectionOverlay.HighlightedPolygonColor.Brush();
+                e.PolygonFill = selectionOverlay.HighlightedPolygonColor.Brush(0.3);
+                e.TextBackground = selectionOverlay.HighlightedTextBackgroundColor.Brush(0.7);
+                e.TextColor = selectionOverlay.HighlightedTextColor.Brush();
+                selectionOverlay.HighlightedBarcodes.Add(e.Barcode);
                 Scanbot.Service.SoundManager.Instance.Beep();
             }
             else
@@ -76,11 +84,11 @@ namespace Barcode.SDK.Example.Properties
                 // removing the barcode will cause it to reset to the default colors 
                 // specified via the `PolygonColor`, `TextBackgroundColor` and `HighlightedTextColor` properties,
                 // thus no need to specify them manually.
-                SelectionOverlay.HighlightedBarcodes.Remove(e.Barcode);
+                selectionOverlay.HighlightedBarcodes.Remove(e.Barcode);
             }
         }
 
-        private Tuple<string, TextAlignment> SelectionOverlayFormatText(Scanbot.Model.Barcode arg)
+        private Tuple<string, TextAlignment> OnFormatText(Scanbot.Model.Barcode arg)
         {
             const int maxLength = 25;
             var barcodeText = arg.Text.Length > maxLength ? $"{arg.Text.Substring(0, maxLength)}..." : arg.Text;

@@ -16,8 +16,8 @@
 
         
         <scanbot:SelectionOverlayControl x:Name="SelectionOverlay"
-                                         PolygonTapped="SelectionOverlayPolygonTapped"
-                                         FormatText="SelectionOverlayFormatText"
+                                         PolygonTapped="OnPolygonTapped"
+                                         FormatText="OnFormatText"
                                          />
         
         <!-- Comment out the finder control to see how the UI looks without it. (A page reload would be needed). -->
