@@ -18,7 +18,12 @@ namespace Barcode.SDK.Example.Properties
         {
             // The below limits the barcode types that will be scanned.
             // Comment out this line to get all supported types or specify the types you want to try explicitly.
-            AcceptedTypes = new List<BarcodeType> { BarcodeType.QRCode, BarcodeType.Aztec }
+            AcceptedTypes = new List<BarcodeType> 
+            { 
+                BarcodeType.QRCode,
+                BarcodeType.MicroQRCode,
+                BarcodeType.Aztec
+            }
         };
 
         public ClassicBarcodeScannerPage()
@@ -45,9 +50,9 @@ namespace Barcode.SDK.Example.Properties
             BackButton.BackRequested -= OnBackPress;
         }
 
-        private void OnError(ScanbotSdkException error)
+        private async void OnError(ScanbotSdkException error)
         {
-            Toast.Show(error.Message, "Oops! Something went wrong");
+            await Toast.Show(error.Message, "Oops! Something went wrong");
         }
 
         private void OnBackPress(object sender, BackRequestedEventArgs e)
