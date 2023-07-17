@@ -65,12 +65,16 @@ namespace Barcode.SDK.Example.Pages
                 return;
             }
 
+            BarcodeScanner.IsPaused = true;
+
             var joinedBarcodes = string.Join(", ", barcode.Barcodes.Select(b => b.Text));
             var toastTitle = barcode.Barcodes.Count > 1 ? 
                 "Detected multiple barcodes" : 
                 $"Detected {barcode.Barcodes[0].Type} barcode";
 
             await Toast.Show(joinedBarcodes, toastTitle);
+
+            BarcodeScanner.IsPaused = false;
         }
     }
 }
