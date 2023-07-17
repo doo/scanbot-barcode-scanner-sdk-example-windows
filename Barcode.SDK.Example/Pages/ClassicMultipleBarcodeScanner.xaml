@@ -14,12 +14,7 @@
                                          PlayBeep="False"
                                          />
 
-        
-        <scanbot:SelectionOverlayControl x:Name="SelectionOverlay"
-                                         PolygonTapped="OnPolygonTapped"
-                                         FormatText="OnFormatText"
-                                         />
-        
+
         <!-- Comment out the finder control to see how the UI looks without it. (A page reload would be needed). -->
         <scanbot:FinderControl x:Name="Finder"
                                HintText="Custom finder hint text..."
@@ -29,5 +24,10 @@
                                RelativeHoleHeight="60"
                                RelativeHoleWidth="60"
                                 />
+        
+        <scanbot:SelectionOverlayControl x:Name="SelectionOverlay"
+                                         PolygonTapped="OnPolygonTapped"
+                                         FormatText="OnFormatText"
+                                         />
     </Grid>
 </Page>
