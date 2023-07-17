@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Navigation;
 using Scanbot;
 using Scanbot.Model;
 using Barcode.SDK.Example.Model;
-using Barcode.SDK.Example.Properties;
+using Barcode.SDK.Example.Pages;
 using Barcode.SDK.Example.Utils;
 
 namespace Barcode.SDK.Example
@@ -82,9 +82,13 @@ namespace Barcode.SDK.Example
                 var result = await Scanner.Start(Frame, Configuration);
                 await Toast.Show(result.Barcodes);
             }
-            else if (item.Type == Feature.FeatureType.ClassicComponent)
+            else if (item.Type == Feature.FeatureType.ClassicComponentSingle)
             {
-                Frame.Navigate(typeof(ClassicBarcodeScannerPage));
+                Frame.Navigate(typeof(ClassicSingleBarcodeScanner));
+            }
+            else if (item.Type == Feature.FeatureType.ClassicComponentMultiple)
+            {
+                Frame.Navigate(typeof(ClassicMultipleBarcodeScanner));
             }
             else if (item.Type == Feature.FeatureType.ImportImage)
             {

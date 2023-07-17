@@ -9,13 +9,13 @@ using Scanbot.Model;
 using Scanbot.Utils;
 using Barcode.SDK.Example.Utils;
 
-namespace Barcode.SDK.Example.Properties
+namespace Barcode.SDK.Example.Pages
 {
-    public sealed partial class ClassicBarcodeScannerPage : Page
+    public sealed partial class ClassicMultipleBarcodeScanner : Page
     {
         private SystemNavigationManager BackButton;
 
-        private readonly BarcodeScannerConfiguration ClassicComponentConfiguration = new BarcodeScannerConfiguration
+        private readonly BarcodeScannerConfiguration ClassicMultipleConfiguration = new BarcodeScannerConfiguration
         {
             // The below limits the barcode types that will be scanned.
             // Comment out this line to get all supported types or specify the types you want to try explicitly.
@@ -27,7 +27,7 @@ namespace Barcode.SDK.Example.Properties
             }
         };
 
-        public ClassicBarcodeScannerPage()
+        public ClassicMultipleBarcodeScanner()
         {
             InitializeComponent();
         }
@@ -36,7 +36,7 @@ namespace Barcode.SDK.Example.Properties
         {
             base.OnNavigatedTo(e);
 
-            await BarcodeScanner.Initialize(ClassicComponentConfiguration);
+            await BarcodeScanner.Initialize(ClassicMultipleConfiguration);
 
             BackButton = SystemNavigationManager.GetForCurrentView();
             BackButton.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;

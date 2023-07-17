@@ -27,8 +27,15 @@ namespace Barcode.SDK.Example.Utils
             await Show(barcode.Text, "Detected " + barcode.Type);
         }
 
+        private static Task pendingModal;
+
         public static async Task Show(string body, string title = "Barcode Detected!")
         {
+            if (pendingModal != null)
+            {
+                return;
+            }
+
             var message = new ContentDialog()
             {
                 Title = title,
@@ -36,7 +43,9 @@ namespace Barcode.SDK.Example.Utils
                 CloseButtonText = "Dismiss"
             };
 
-            await message.ShowAsync();
+            pendingModal = message.ShowAsync().AsTask();
+            await pendingModal;
+            pendingModal = null;
         }
     }
 }

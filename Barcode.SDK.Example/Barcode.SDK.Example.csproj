@@ -123,9 +123,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Feature.cs" />
+    <Compile Include="Pages\ClassicSingleBarcodeScanner.xaml.cs">
+      <DependentUpon>ClassicSingleBarcodeScanner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pages\ClassicBarcodeScannerPage.xaml.cs">
-      <DependentUpon>ClassicBarcodeScannerPage.xaml</DependentUpon>
+    <Compile Include="Pages\ClassicMultipleBarcodeScanner.xaml.cs">
+      <DependentUpon>ClassicMultipleBarcodeScanner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="Utils\Toast.cs" />
@@ -156,7 +159,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\ClassicBarcodeScannerPage.xaml">
+    <Page Include="Pages\ClassicSingleBarcodeScanner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ClassicMultipleBarcodeScanner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
