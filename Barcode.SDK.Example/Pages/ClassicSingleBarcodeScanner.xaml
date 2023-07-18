@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="Barcode.SDK.Example.Pages.ClassicSingleBarcodeScanner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:scanbot="using:Scanbot.Controls" 
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="Root">
+        <scanbot:BarcodeScannerComponent x:Name="BarcodeScanner"
+                                         Error="OnError"
+                                         Recognized="OnRecognized"
+                                         />
+
+        
+        <!-- Comment out the finder control to see how the UI looks without it. (A page reload would be needed). -->
+        <scanbot:FinderControl x:Name="Finder"
+                               HintText="Custom finder hint text..."
+                               HoleShape="RoundedRectangle"
+                               HoleCornerRadius="0 20 0 20"                           
+                               HoleStrokeThickness="10"
+                               RelativeHoleHeight="60"
+                               RelativeHoleWidth="60"
+                                />
+    </Grid>
+</Page>

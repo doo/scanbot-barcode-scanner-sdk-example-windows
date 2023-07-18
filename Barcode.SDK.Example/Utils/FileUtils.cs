@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
@@ -9,9 +6,9 @@ using Windows.Storage.Streams;
 
 namespace Barcode.SDK.Example.Utils
 {
-    internal class FileUtils
+    internal static class FileUtils
     {
-        public static async Task<SoftwareBitmap> Pick()
+        public static async Task<SoftwareBitmap> PickImage()
         {
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
@@ -25,7 +22,6 @@ namespace Barcode.SDK.Example.Utils
             if (file == null)
             {
                 return null;
-
             }
 
             using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
@@ -34,9 +30,7 @@ namespace Barcode.SDK.Example.Utils
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
 
                 // Get the SoftwareBitmap representation of the file
-                var bitmap = await decoder.GetSoftwareBitmapAsync();
-
-                return bitmap;
+                return await decoder.GetSoftwareBitmapAsync();
             }
         }
     }

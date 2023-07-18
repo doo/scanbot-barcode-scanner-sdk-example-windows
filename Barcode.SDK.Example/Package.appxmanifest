@@ -8,7 +8,7 @@
 
   <Identity
     Name="io.scanbot.example.sdk.barcode.windows"
-    Publisher="CN=aareu"
+    Publisher="CN=ScanbotSDK"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="0fdc886c-c9a5-41fd-9e9d-5797d18b847f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
@@ -45,7 +45,6 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
-    <DeviceCapability Name="microphone"/>
     <DeviceCapability Name="webcam"/>
   </Capabilities>
 </Package>
