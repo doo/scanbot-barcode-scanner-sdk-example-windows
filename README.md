@@ -10,7 +10,7 @@ The Scanbot Windows Barcode Scanner SDK makes it possible to integrate barcode s
 
 The Scanbot Windows Barcode Scanner SDK will not run without a license. A trial license key is required for evaluation or testing.
 
-To test the Scanbot SDK without crashing, you can get a free “no-strings-attached” trial license. Please submit the [Trial License Form](https://scanbot.io/trial/) on our website. You will need to provide the following package name (aka. application ID) of this
+To try the Scanbot SDK without a one-minute limit, you can get a free “no-strings-attached” trial license. Please submit the [Trial License Form](https://scanbot.io/trial/) on our website. You will need to provide the following package name (aka. application ID) of this
 example app: `io.scanbot.example.sdk.barcode.windows`
 
 ## Free Developer Support
