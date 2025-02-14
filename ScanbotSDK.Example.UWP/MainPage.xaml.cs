@@ -4,25 +4,16 @@ using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Scanbot;
-using Scanbot.Model;
 using Barcode.SDK.Example.Model;
 using Barcode.SDK.Example.Pages;
 using Barcode.SDK.Example.Utils;
+using ScanbotSDK.Barcode;
+using ScanbotSDK.Barcode.UI;
 
 namespace Barcode.SDK.Example
 {
     public sealed partial class MainPage : Page
     {
-        private readonly BarcodeScanner Scanner = new BarcodeScanner();
-
-        private readonly BarcodeScannerConfiguration Configuration = new BarcodeScannerConfiguration
-        {
-            // This configuration is used for the ready-to-use UI as well as scanning from a file.
-            // Add/remove properties as needed to change the way the scanner behaves.
-            // See ClassicComponentBarcodeScannerPage to change its configuration.
-        };
-
         public MainPage()
         {
             InitializeComponent();
@@ -50,9 +41,9 @@ namespace Barcode.SDK.Example
             {
                 errorMessage = "Missing trial license key! Please see the comments in App.xaml.cs";
             }
-            else if (!LicenseManager.Details.IsValid)
+            else if (!ScanbotSDK.Barcode.BarcodeSDK.LicenseInfo.IsValid)
             {
-                errorMessage = LicenseManager.Details.Description;
+                errorMessage = ScanbotSDK.Barcode.BarcodeSDK.LicenseInfo.Description;
             }
 
             if (!string.IsNullOrEmpty(errorMessage))
@@ -79,8 +70,14 @@ namespace Barcode.SDK.Example
 
             if (item.Type == Feature.FeatureType.ReadyToUseUI)
             {
-                var result = await Scanner.Start(Frame, Configuration);
-                await Toast.Show(result.Barcodes);
+                var barcodes = await BarcodeScannerPage.ShowOnFrameAsync(Frame, new BarcodeScannerConfiguration
+                {
+                    // Uncomment to set predefined types
+                    // AcceptedBarcodeFormats = BarcodeFormats.Twod
+                    // Uncomment to set explicit types
+                    // AcceptedBarcodeFormats = [ BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec ]
+                });
+                await Toast.Show(barcodes);
             }
             else if (item.Type == Feature.FeatureType.ClassicComponentSingle)
             {
@@ -92,18 +89,26 @@ namespace Barcode.SDK.Example
             }
             else if (item.Type == Feature.FeatureType.ImportImage)
             {
-                var bitmap = await FileUtils.PickImage();
-
-                if (bitmap == null)
-                {
-                    return;
-                }
-
                 try
                 {
-                    var result = Scanner.Recognize(bitmap, Configuration);
+                    var bitmap = await FileUtils.PickImage();
 
-                    if (result.Barcodes.Count == 0)
+                    if (bitmap == null)
+                    {
+                        return;
+                    }
+
+                    var recognizer = new BarcodeRecognizer(new BarcodeScannerConfiguration
+                    {
+                        Live = false,
+                        // Uncomment to set predefined types
+                        // AcceptedBarcodeFormats = BarcodeFormats.Twod
+                        // Uncomment to set explicit types
+                        // AcceptedBarcodeFormats = [ BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec ]
+                    });
+                    var result = await recognizer.RecognizeAsync(bitmap);
+
+                    if (result.Barcodes.Length == 0)
                     {
                         await Toast.Show("Didn't find any barcodes on the image you selected", "Oops");
                         return;

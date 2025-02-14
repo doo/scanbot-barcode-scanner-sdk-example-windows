@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Windows.UI.Core;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Scanbot.Model;
 using Barcode.SDK.Example.Utils;
 using System.Linq;
+using ScanbotSDK.Barcode;
+using System;
 
 namespace Barcode.SDK.Example.Pages
 {
@@ -14,14 +14,10 @@ namespace Barcode.SDK.Example.Pages
 
         private readonly BarcodeScannerConfiguration ClassicSingleConfiguration = new BarcodeScannerConfiguration
         {
-            // The below limits the barcode types that will be scanned.
-            // Comment out this line to get all supported types or specify the types you want to try explicitly.
-            AcceptedTypes = new List<BarcodeType> 
-            { 
-                BarcodeType.QRCode,
-                BarcodeType.MicroQRCode,
-                BarcodeType.Aztec
-            }
+            // Uncomment to set predefined types
+            // AcceptedBarcodeFormats = BarcodeFormats.Twod
+            // Uncomment to set explicit types
+            // AcceptedBarcodeFormats = [ BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec ]
         };
 
         public ClassicSingleBarcodeScanner()
@@ -48,7 +44,7 @@ namespace Barcode.SDK.Example.Pages
             BackButton.BackRequested -= OnBackPress;
         }
 
-        private async void OnError(ScanbotSdkException error)
+        private async void OnError(Exception error)
         {
             await Toast.Show(error.Message, "Oops! Something went wrong");
         }
@@ -58,19 +54,19 @@ namespace Barcode.SDK.Example.Pages
             Frame.GoBack();
         }
 
-        private async void OnRecognized(BarcodeResult barcode)
+        private async void OnRecognized(BarcodeItem[] barcodes)
         {
-            if (barcode.IsEmpty)
+            if (barcodes.Length == 0)
             {
                 return;
             }
 
             BarcodeScanner.IsPaused = true;
 
-            var joinedBarcodes = string.Join(", ", barcode.Barcodes.Select(b => b.Text));
-            var toastTitle = barcode.Barcodes.Count > 1 ? 
+            var joinedBarcodes = string.Join(", ", barcodes.Select(b => b.Text));
+            var toastTitle = barcodes.Length > 1 ? 
                 "Detected multiple barcodes" : 
-                $"Detected {barcode.Barcodes[0].Type} barcode";
+                $"Detected {barcodes[0].Format} barcode";
 
             await Toast.Show(joinedBarcodes, toastTitle);
 
