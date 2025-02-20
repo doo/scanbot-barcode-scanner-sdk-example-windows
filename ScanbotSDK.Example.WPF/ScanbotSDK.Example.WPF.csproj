@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0-local.10">
+    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0-local.11">
 			<!-- Required if our package is a dependency of your own package. -->
 			<!--<PrivateAssets>build</PrivateAssets>-->
 		</PackageReference>

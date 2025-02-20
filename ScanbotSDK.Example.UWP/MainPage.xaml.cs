@@ -75,7 +75,7 @@ namespace Barcode.SDK.Example
                     // Uncomment to set predefined types
                     // AcceptedBarcodeFormats = BarcodeFormats.Twod
                     // Uncomment to set explicit types
-                    // AcceptedBarcodeFormats = [ BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec ]
+                    // AcceptedBarcodeFormats = new BarcodeFormat[] { BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec }
                 });
                 await Toast.Show(barcodes);
             }
@@ -104,7 +104,7 @@ namespace Barcode.SDK.Example
                         // Uncomment to set predefined types
                         // AcceptedBarcodeFormats = BarcodeFormats.Twod
                         // Uncomment to set explicit types
-                        // AcceptedBarcodeFormats = [ BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec ]
+                        // AcceptedBarcodeFormats = new BarcodeFormat[] { BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec }
                     });
                     var result = await recognizer.RecognizeAsync(bitmap);
 

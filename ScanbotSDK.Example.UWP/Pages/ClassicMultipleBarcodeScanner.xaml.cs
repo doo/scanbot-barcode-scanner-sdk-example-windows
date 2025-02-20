@@ -20,7 +20,7 @@ namespace Barcode.SDK.Example.Pages
             // Uncomment to set predefined types
             // AcceptedBarcodeFormats = BarcodeFormats.Twod
             // Uncomment to set explicit types
-            // AcceptedBarcodeFormats = [ BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec ]
+            // AcceptedBarcodeFormats = new BarcodeFormat[] { BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec }
         };
 
         public ClassicMultipleBarcodeScanner()
