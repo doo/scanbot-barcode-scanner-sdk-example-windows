@@ -37,7 +37,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250205002" />
-    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0-local.11">
+    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0-local.12">
 		<!-- Required if our package is a dependency of your own package. -->
 		<!--<PrivateAssets>build</PrivateAssets>-->
 	  </PackageReference>
