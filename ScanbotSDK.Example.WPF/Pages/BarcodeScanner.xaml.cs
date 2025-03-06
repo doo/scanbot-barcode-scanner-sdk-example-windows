@@ -20,7 +20,7 @@ namespace ScanbotSDK.Example.WPF
     /// <summary>
     /// Interaction logic for BarcodeScanner.xaml
     /// </summary>
-    public partial class BarcodeScanner : Page
+    public partial class BarcodeScanner : System.Windows.Controls.Page
     {
         private BarcodeRecognizer recognizer;
 
