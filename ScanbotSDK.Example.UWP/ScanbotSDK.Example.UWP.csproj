@@ -102,7 +102,7 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
     </PackageReference>
-    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0-local.12">
+    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0-local.13">
 			<!-- Required if our package is a dependency of your own package. -->
 			<!--<PrivateAssets>build</PrivateAssets>-->
 		</PackageReference>

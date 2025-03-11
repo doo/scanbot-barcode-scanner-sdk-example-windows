@@ -23,7 +23,7 @@ namespace Barcode.SDK.Example.Pages
             //    BarcodeFormat.Aztec
             //]
         };
-        BarcodeRecognizer recognizer = new BarcodeRecognizer(new BarcodeScannerConfiguration());
+
         public ClassicSingleBarcodeScanner()
         {
             InitializeComponent();
