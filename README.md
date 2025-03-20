@@ -65,9 +65,7 @@ As a customer, you also get access to a dedicated support Slack or Microsoft Tea
 
 ### Licensing and pricing
 
-The barcode scanner example app will run one minute per session without a license. After that, all functionalities and UI components will stop working.
-
-To try the Barcode Scanner without the one-minute limit, you can request a free, no-strings-attached [7-day trial license](https://scanbot.io/trial/?utm_source=github.com&utm_medium=referral&utm_campaign=dev_sites).
+Unlike our other SDKs, the Windows SDK does not offer a one-minute trial mode. A trial license key is required for evaluation or testing. To get a free "no-strings-attached" 7-day trial license, please submit the [trial license form](https://scanbot.io/trial/?utm_source=github.com&utm_medium=referral&utm_campaign=dev_sites) on our website.
 
 Our pricing model is simple: Unlimited barcode scanning for a flat annual license fee, full support included. There are no tiers, usage charges, or extra fees. [Contact](https://scanbot.io/contact-sales/?utm_source=github.com&utm_medium=referral&utm_campaign=dev_sites) our team to receive your quote.
 
