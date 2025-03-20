@@ -13,7 +13,7 @@ namespace Barcode.SDK.Example
          * A trial license key is required for evaluation or testing!
          * You can get a free "no-strings-attached" trial license.
          * Please use the trial license form on our website: https://scanbot.io/trial/
-         * You will need to provide the following package name (aka. application ID) of this
+         * You will need to provide the following package ID of this
          * example app: "io.scanbot.example.sdk.barcode.windows"
          */
         public const string LICENSE_KEY = ""; // TODO Insert your trial license key here
@@ -37,7 +37,7 @@ namespace Barcode.SDK.Example
                 Window.Current.Content = rootFrame;
             }
 
-            var license = Scanbot.BarcodeSDK.Initialize(LICENSE_KEY);
+            var license = ScanbotSDK.Barcode.BarcodeSDK.Initialize(LICENSE_KEY);
 
             if (e.PrelaunchActivated == false)
             {

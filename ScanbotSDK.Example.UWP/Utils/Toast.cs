@@ -1,30 +1,28 @@
-﻿
-using Scanbot.Utils;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using ScanbotSDK.Barcode;
 
 namespace Barcode.SDK.Example.Utils
 {
     public static class Toast
     {
-        public static Task Show(List<Scanbot.Model.Barcode> barcodes)
+        public static Task Show(BarcodeItem[] barcodes)
         {
-            if (barcodes.Count == 1)
+            if (barcodes.Length == 1)
             {
                 return Show(barcodes[0]);
             }
 
-            var types = string.Join(", ", barcodes.Select(code => EnumExtensions.ToDescription(code.Type)));
+            var types = string.Join(", ", barcodes.Select(code => code.Format.ToString()));
 
             return Show(types, "Detected multiple barcodes!");
         }
 
-        public static async Task Show(Scanbot.Model.Barcode barcode)
+        public static async Task Show(BarcodeItem barcode)
         {
-            await Show(barcode.Text, "Detected " + barcode.Type);
+            await Show(barcode.Text, "Detected " + barcode.Format);
         }
 
         private static Task pendingModal;

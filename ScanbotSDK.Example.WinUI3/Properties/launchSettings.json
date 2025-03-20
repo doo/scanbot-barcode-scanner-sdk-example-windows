@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ScanbotSDK.Example.WinUI3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ScanbotSDK.Example.WinUI3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -4,10 +4,10 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Scanbot.Controls;
-using Scanbot.Model;
-using Scanbot.Utils;
 using Barcode.SDK.Example.Utils;
+using ScanbotSDK.Barcode;
+using ScanbotSDK.Barcode.UI;
+using ScanbotSDK.Common;
 
 namespace Barcode.SDK.Example.Pages
 {
@@ -17,14 +17,10 @@ namespace Barcode.SDK.Example.Pages
 
         private readonly BarcodeScannerConfiguration ClassicMultipleConfiguration = new BarcodeScannerConfiguration
         {
-            // The below limits the barcode types that will be scanned.
-            // Comment out this line to get all supported types or specify the types you want to try explicitly.
-            AcceptedTypes = new List<BarcodeType> 
-            { 
-                BarcodeType.QRCode,
-                BarcodeType.MicroQRCode,
-                BarcodeType.Aztec
-            }
+            // Uncomment to set predefined types
+            // AcceptedBarcodeFormats = BarcodeFormats.Twod
+            // Uncomment to set explicit types
+            // AcceptedBarcodeFormats = new BarcodeFormat[] { BarcodeFormat.QrCode, BarcodeFormat.MicroQrCode, BarcodeFormat.Aztec }
         };
 
         public ClassicMultipleBarcodeScanner()
@@ -51,7 +47,7 @@ namespace Barcode.SDK.Example.Pages
             BackButton.BackRequested -= OnBackPress;
         }
 
-        private async void OnError(ScanbotSdkException error)
+        private async void OnError(Exception error)
         {
             await Toast.Show(error.Message, "Oops! Something went wrong");
         }
@@ -72,12 +68,12 @@ namespace Barcode.SDK.Example.Pages
 
             if (!selectionOverlay.HighlightedBarcodes.Contains(e.Barcode))
             {
-                e.PolygonStroke = selectionOverlay.HighlightedPolygonColor.Brush();
-                e.PolygonFill = selectionOverlay.HighlightedPolygonColor.Brush(0.3);
-                e.TextBackground = selectionOverlay.HighlightedTextBackgroundColor.Brush(0.7);
-                e.TextColor = selectionOverlay.HighlightedTextColor.Brush();
+                e.PolygonStroke = selectionOverlay.HighlightedPolygonColor.ToWinUIBrush();
+                e.PolygonFill = selectionOverlay.HighlightedPolygonColor.ToWinUIBrush(0.3);
+                e.TextBackground = selectionOverlay.HighlightedTextBackgroundColor.ToWinUIBrush(0.7);
+                e.TextColor = selectionOverlay.HighlightedTextColor.ToWinUIBrush();
                 selectionOverlay.HighlightedBarcodes.Add(e.Barcode);
-                Scanbot.Service.SoundManager.Instance.Beep();
+                SoundManager.PlayBeep();
             }
             else
             {
@@ -88,11 +84,11 @@ namespace Barcode.SDK.Example.Pages
             }
         }
 
-        private Tuple<string, TextAlignment> OnFormatText(Scanbot.Model.Barcode arg)
+        private Tuple<string, TextAlignment> OnFormatText(BarcodeItem arg)
         {
             const int maxLength = 25;
             var barcodeText = arg.Text.Length > maxLength ? $"{arg.Text.Substring(0, maxLength)}..." : arg.Text;
-            var previewText = $"{arg.Type}: {barcodeText}";
+            var previewText = $"{arg.Format}: {barcodeText}";
 
             return Tuple.Create(previewText, TextAlignment.Left);
         }
