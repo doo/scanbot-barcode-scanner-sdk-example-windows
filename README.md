@@ -19,11 +19,13 @@ It operates entirely offline on the user's device and takes only 0.04 seconds to
 
 The SDK can be integrated into your mobile apps within minutes and comes with Ready-To-Use UI components, which allow you to customize the barcode scanner to your needs.
 
-💡 For more details about the Scanbot Barcode Scanner SDK, please check out our [documentation](https://docs.scanbot.io/barcode-scanner-sdk/windows/introduction/?utm_source=npmjs.com&utm_medium=referral&utm_campaign=dev_sites).
+💡 For more details about the Scanbot Barcode Scanner SDK, please check out our [documentation](https://docs.scanbot.io/barcode-scanner-sdk/windows/introduction/?utm_source=github.com&utm_medium=referral&utm_campaign=dev_sites).
 
 ## How to run the example app
 
-The Windows SDK is a native SDK built for UWP using C++/WinRT and camera access via `Windows.Media` API. It is available as a NuGet package ([Scanbot.BarcodeSDK.Windows](https://www.nuget.org/packages/Scanbot.BarcodeSDK.Windows/)).
+The Windows SDK is a native SDK built for .NET Native or .NET 8/9 using various system components such as Media Foundation and Windows Imaging Component.
+
+It is available a NuGet package [`Scanbot.BarcodeSDK.Windows`](https://www.nuget.org/packages/Scanbot.BarcodeSDK.Windows/).
 
 Open it in Visual Studio 2019/2022, restore the NuGet packages, and run the example—it's as simple as that!
 
@@ -57,7 +59,7 @@ Whether you're a seasoned developer or just starting, our tutorials provide clea
 
 ### Free integration support
 
-Need help integrating our barcode scanning software into your UWP apps? We offer [free developer support](https://docs.scanbot.io/support/?utm_source=github.com&utm_medium=referral&utm_campaign=dev_sites) via Slack, MS Teams, or email.
+Need help integrating our barcode scanning software into your WinUI3 or UWP apps? We offer [free developer support](https://docs.scanbot.io/support/?utm_source=github.com&utm_medium=referral&utm_campaign=dev_sites) via Slack, MS Teams, or email.
 
 As a customer, you also get access to a dedicated support Slack or Microsoft Teams channel to talk directly to your Customer Success Manager and our engineers.
 
@@ -71,7 +73,7 @@ Our pricing model is simple: Unlimited barcode scanning for a flat annual licens
 
 ### Other supported platforms
 
-Besides UWP, the Scanbot Barcode Scanner SDK is also available on:
+Besides UWP/WinUI3, the Scanbot Barcode Scanner SDK is also available on:
 
 * [Android (native)](https://github.com/doo/scanbot-barcode-scanner-sdk-example-android)
 * [iOS (native)](https://github.com/doo/scanbot-barcode-scanner-sdk-example-ios)
