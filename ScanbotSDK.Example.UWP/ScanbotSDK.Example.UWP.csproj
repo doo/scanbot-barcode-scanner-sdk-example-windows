@@ -102,10 +102,10 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
     </PackageReference>
-    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0-local.13">
-			<!-- Required if our package is a dependency of your own package. -->
-			<!--<PrivateAssets>build</PrivateAssets>-->
-		</PackageReference>
+    <PackageReference Include="Scanbot.BarcodeSDK.Windows" Version="7.0.0">
+      <!-- Required if our package is a dependency of your own package. -->
+      <!--<PrivateAssets>build</PrivateAssets>-->
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
